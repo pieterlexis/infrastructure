@@ -1,0 +1,22 @@
+---
+- name: Install prereqs for prometheus
+  hosts: prometheus
+  become_user: root
+  tags:
+    - prometheus
+  tasks:
+    - apt:
+        name: python-pip
+        state: installed
+  roles:
+    - { role: williamyeh.prometheus,
+        prometheus_components: ['prometheus'],
+        prometheus_opts: '-web.listen-address 127.0.0.1:9090'
+      }
+    - role: pkorobeinikov.apt-repository
+      apt_repository_repositories:
+        - repo: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+          key: https://packagecloud.io/gpg.key
+    - { role: andreaswolf.letsencrypt }
+    - { role: manala.grafana }
+    - { role: jdauphant.nginx }

@@ -1,8 +1,12 @@
 [nlnog-infra:children]
 dns-auth
+prometheus
 
 [dns-auth]
 ns1.am1.dns.infra.nlnog.net
+
+[prometheus]
+mon1.ams02.infra.nlnog.net ansible_ssh_host=185.66.251.247
 
 [gitlab]
 gitlab0.am2.infra.nlnog.net

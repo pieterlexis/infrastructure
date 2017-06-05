@@ -57,3 +57,7 @@
   roles:
     - role: 20c.letsencrypt
     - role: 20c.gitlab
+
+- include: playbooks/prometheus.yml
+  tags:
+    - prometheus

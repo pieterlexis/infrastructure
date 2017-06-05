@@ -1,0 +1,38 @@
+extra_packages:
+  - python-pip
+prometheus_version: '1.6.3'
+prometheus_sitename: 'monitoring.infra.nlnog.net'
+nginx_sites:
+  "{{ prometheus_sitename }}":
+    - listen 80
+    - listen [::]:80
+    - 'server_name {{ prometheus_sitename }}'
+    - 'return 301 https://$http_host$request_uri'
+  "{{ prometheus_sitename }}-ssl":
+    - listen 443 ssl
+    - listen [::]:443 ssl
+    - 'server_name {{ prometheus_sitename }}'
+    - access_log "/var/log/nginx/{{ prometheus_sitename }}-access.log"
+    - error_log "/var/log/nginx/{{ prometheus_sitename }}-error.log"
+    - ssl_certificate "/etc/ssl/letsencrypt/certs/bla"
+    - ssl_certificate_key "/etc/ssl/letsencrypt/certs/bla"
+    - location / {
+        proxy_pass http://127.0.0.1:3000;
+      }
+
+manala_grafana_config:
+  - server:
+    - http_addr: '127.0.0.1'
+    - domain: '{{ prometheus_sitename }}'
+
+letsencrypt_certs:
+  - name: '{{ prometheus_sitename }}'
+    host:
+      - '{{ prometheus_sitename }}'
+
+manala_grafana_datasources:
+  - name: Prometheus
+    type: Prometheus
+    isDefault: true
+    access: proxy
+    url: 'http://127.0.0.1:9090'

@@ -14,3 +14,19 @@
   scm: git
   src: https://github.com/20c/ansible-role-letsencrypt.git
   version: master
+- name: williamyeh.prometheus
+  scm: git
+  src: https://github.com/pieterlexis/ansible-prometheus.git
+  version: master
+- name: jdauphant.nginx
+  scm: git
+  src: https://github.com/jdauphant/ansible-role-nginx.git
+  version: master
+- name: pkorobeinikov.apt-repository
+  src: pkorobeinikov.apt-repository
+- name: manala.grafana
+  src: manala.grafana
+- name: andreaswolf.letsencrypt
+  src: https://github.com/andreaswolf/ansible-role-letsencrypt.git
+  scm: git
+  version: master

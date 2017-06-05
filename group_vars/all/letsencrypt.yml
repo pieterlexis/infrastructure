@@ -1,0 +1,11 @@
+---
+dehydrated_challenges_directory: '/var/www/letsencrypt'
+
+nginx_configs:
+  letsencrypt:
+    - |
+      server {
+        location /.wellknown/acme-challenge/ {
+          alias "{{ dehydrated_challenges_directory }}";
+        }
+      }
