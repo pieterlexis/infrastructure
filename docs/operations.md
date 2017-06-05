@@ -9,6 +9,11 @@ am2: pcextreme Amsterdam West
 
 Location names should start at 1
 
+**note:** Different locations exist now, use the naming as pcextreme gives theM
+
+ams02
+ams03
+ams05
 
 ### Naming
 
